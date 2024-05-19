@@ -117,7 +117,8 @@ fun HomeScreen() {
                 Icon(
                     modifier = Modifier.size(30.dp),
                     painter = painterResource(id = R.drawable.fab),
-                    contentDescription = "Chats"
+                    contentDescription = "Chats",
+                    tint = Color.Black
                 )
             }
         },
