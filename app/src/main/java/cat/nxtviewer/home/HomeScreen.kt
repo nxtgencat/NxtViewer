@@ -24,6 +24,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -44,13 +45,14 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
 import cat.nxtviewer.R
 import cat.nxtviewer.chat.ChatScreenUI
-import cat.nxtviewer.ui.theme.BottomSelected
+import cat.nxtviewer.ui.theme.BottomTabSelected
+import cat.nxtviewer.ui.theme.BottomTabSelectedIcon
 import cat.nxtviewer.ui.theme.DividerColor
 import cat.nxtviewer.ui.theme.FABColor
-import cat.nxtviewer.ui.theme.TabSelected
-import cat.nxtviewer.ui.theme.TabSelectedText
-import cat.nxtviewer.ui.theme.TabUnSelected
-import cat.nxtviewer.ui.theme.TabUnSelectedText
+import cat.nxtviewer.ui.theme.FilterTabSelected
+import cat.nxtviewer.ui.theme.FilterTabSelectedText
+import cat.nxtviewer.ui.theme.FilterTabUnSelected
+import cat.nxtviewer.ui.theme.FilterTabUnSelectedText
 import cat.nxtviewer.ui.theme.WhatsBG
 
 class HomeScreenUI : Screen {
@@ -135,7 +137,12 @@ fun HomeScreen() {
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        BottomBarTab(R.drawable.chats, "Chats", BottomSelected)
+                        BottomBarTab(
+                            R.drawable.chats,
+                            "Chats",
+                            BottomTabSelectedIcon,
+                            BottomTabSelected
+                        )
                     }
                     Column(
                         modifier = Modifier.weight(1f),
@@ -180,13 +187,18 @@ fun HomeScreen() {
 }
 
 @Composable
-fun BottomBarTab(icon: Int, name: String, color: Color = Color.Transparent) {
+fun BottomBarTab(
+    icon: Int,
+    name: String,
+    iconColor: Color = LocalContentColor.current,
+    tabColor: Color = Color.Transparent
+) {
     Column(
         modifier = Modifier
             .width(70.dp)
             .height(35.dp)
             .clip(RoundedCornerShape(25.dp))
-            .background(color = color)
+            .background(color = tabColor)
             .clickable { },
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -194,7 +206,8 @@ fun BottomBarTab(icon: Int, name: String, color: Color = Color.Transparent) {
         Icon(
             modifier = Modifier.size(25.dp),
             painter = painterResource(id = icon),
-            contentDescription = name
+            contentDescription = name,
+            tint = iconColor
         )
     }
     Spacer(modifier = Modifier.height(5.dp))
@@ -213,7 +226,7 @@ fun FilterTabRow() {
         Column(
             modifier = Modifier
                 .clip(RoundedCornerShape(25.dp))
-                .background(color = TabSelected)
+                .background(color = FilterTabSelected)
                 .clickable { },
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -222,14 +235,14 @@ fun FilterTabRow() {
                 modifier = Modifier
                     .padding(start = 15.dp, end = 15.dp, top = 5.dp, bottom = 5.dp),
                 text = "All",
-                color = TabSelectedText
+                color = FilterTabSelectedText
             )
         }
         Spacer(modifier = Modifier.width(10.dp))
         Column(
             modifier = Modifier
                 .clip(RoundedCornerShape(25.dp))
-                .background(color = TabUnSelected)
+                .background(color = FilterTabUnSelected)
                 .clickable { },
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -238,14 +251,14 @@ fun FilterTabRow() {
                 modifier = Modifier
                     .padding(start = 15.dp, end = 15.dp, top = 5.dp, bottom = 5.dp),
                 text = "Unread",
-                color = TabUnSelectedText
+                color = FilterTabUnSelectedText
             )
         }
         Spacer(modifier = Modifier.width(10.dp))
         Column(
             modifier = Modifier
                 .clip(RoundedCornerShape(25.dp))
-                .background(color = TabUnSelected)
+                .background(color = FilterTabUnSelected)
                 .clickable { },
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
@@ -254,7 +267,7 @@ fun FilterTabRow() {
                 modifier = Modifier
                     .padding(start = 15.dp, end = 15.dp, top = 5.dp, bottom = 5.dp),
                 text = "Groups",
-                color = TabUnSelectedText
+                color = FilterTabUnSelectedText
             )
         }
     }
@@ -276,12 +289,11 @@ fun ChatRow(navigator: Navigator?) {
             contentDescription = "Chats",
             tint = Color.LightGray
         )
-//        Spacer(modifier = Modifier.width(5.dp))
         Column(
             modifier = Modifier
                 .height(50.dp)
                 .weight(10f),
-            verticalArrangement = Arrangement.SpaceAround
+            verticalArrangement = Arrangement.SpaceEvenly
         ) {
             Row {
                 Text(

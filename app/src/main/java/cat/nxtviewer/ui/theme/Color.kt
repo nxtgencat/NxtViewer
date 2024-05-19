@@ -13,18 +13,22 @@ val Pink40 = Color(0xFF7D5260)
 val WhatsBG = Color(0xFF08141C)
 
 //Top
-val TabSelected = Color(0xFF003728)
-val TabSelectedText = Color(0xFF00BF5A)
-val TabUnSelected = Color(0xFF222B32)
-val TabUnSelectedText = Color(0xFF8197A1)
+val FilterTabSelected = Color(0xFF003728)
+val FilterTabUnSelected = Color(0xFF222B32)
+val FilterTabSelectedText = Color(0xFF00BF5A)
+val FilterTabUnSelectedText = Color(0xFF8197A1)
 
 //Bottom
-val BottomSelected = Color(0xFF003728)
-val BottomUnSelectedIcon = Color(0xFFCEFECE)
+val BottomTabSelected = Color(0xFF003728)
+val BottomTabSelectedIcon = Color(0xFFCEFECE)
 val DotColor = Color(0xFF00C357)
 
 //FAB
 val FABColor = Color(0xFF00C357)
 val DividerColor = Color(0xFF1B252C)
-val SecuritymessageText = Color(0xFFE7BB6B)
-val SecuritymessageBG = Color(0xFF19272E)
+val SecurityMessageText = Color(0xFFE7BB6B)
+val SecurityMessageBG = Color(0xFF19272E)
+
+//Bubble
+val ReceiverBubbleBG = Color(0xFF1B2C35)
+val SenderBubbleBG = Color(0xFF004E35)

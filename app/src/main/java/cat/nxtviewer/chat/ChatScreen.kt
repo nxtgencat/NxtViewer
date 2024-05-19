@@ -11,8 +11,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.InlineTextContent
@@ -20,6 +20,7 @@ import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -29,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.Placeholder
@@ -37,14 +39,16 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
 import cat.nxtviewer.R
-import cat.nxtviewer.ui.theme.SecuritymessageBG
-import cat.nxtviewer.ui.theme.SecuritymessageText
+import cat.nxtviewer.ui.theme.ReceiverBubbleBG
+import cat.nxtviewer.ui.theme.SecurityMessageBG
+import cat.nxtviewer.ui.theme.SecurityMessageText
 import cat.nxtviewer.ui.theme.WhatsBG
 
 class ChatScreenUI : Screen {
@@ -79,6 +83,7 @@ fun ChatScreen() {
             )
             Column {
                 SecurityMessage()
+                ReceiverBubble()
             }
         }
     }
@@ -88,14 +93,14 @@ fun ChatScreen() {
 fun ChatTopBar(navigator: Navigator?) {
     Row(
         modifier = Modifier
-            .safeDrawingPadding()
+            .statusBarsPadding()
             .fillMaxWidth()
             .height(75.dp)
             .padding(start = 5.dp, end = 5.dp, bottom = 5.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         IconButton(
-            modifier = Modifier.weight(1f),
+            modifier = Modifier.weight(2f),
             onClick = {
                 navigator?.pop()
             }
@@ -109,7 +114,7 @@ fun ChatTopBar(navigator: Navigator?) {
         }
         Icon(
             modifier = Modifier
-                .weight(2f)
+                .weight(3f)
                 .size(50.dp),
             painter = painterResource(id = R.drawable.user),
             contentDescription = "Chats",
@@ -119,41 +124,33 @@ fun ChatTopBar(navigator: Navigator?) {
         Column(
             modifier = Modifier
                 .height(50.dp)
-                .weight(8f),
+                .weight(10f),
             verticalArrangement = Arrangement.SpaceAround
         ) {
-            Row(
-                horizontalArrangement = Arrangement.SpaceAround
-            ) {
-                Text(
-                    maxLines = 1,
-                    text = "+919014396580 (You)",
-                    fontSize = 18.sp,
-                    color = Color.White,
-                    overflow = TextOverflow.Ellipsis
-                )
-            }
+            Text(
+                maxLines = 1,
+                text = "+919014396580 (You)",
+                fontSize = 16.sp,
+                color = Color.White,
+                overflow = TextOverflow.Ellipsis
+            )
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(
-                    modifier = Modifier.size(12.dp),
+                TextWithIcon(
                     imageVector = Icons.Default.Lock,
-                    contentDescription = null,
-                    tint = Color.Gray
-                )
-                Spacer(modifier = Modifier.width(5.dp))
-                Text(
-                    maxLines = 1,
-                    text = "End-to-end encrypted",
-                    color = Color.Gray,
-                    overflow = TextOverflow.Ellipsis,
-                    fontSize = 14.sp
+                    vectorWidth = 10.sp,
+                    vectorHeight = 10.sp,
+                    vectorColor = Color.Gray,
+                    text = " End-to-end encrypted",
+                    textColor = Color.Gray,
+                    textSize = 14.sp,
+                    maxLines = 1
                 )
             }
         }
         IconButton(
-            modifier = Modifier.weight(1.5f),
+            modifier = Modifier.weight(2f),
             onClick = { /*TODO*/ }
         ) {
             Icon(
@@ -165,7 +162,7 @@ fun ChatTopBar(navigator: Navigator?) {
         }
         Spacer(modifier = Modifier.width(5.dp))
         IconButton(
-            modifier = Modifier.weight(1.5f),
+            modifier = Modifier.weight(2f),
             onClick = { /*TODO*/ }
         ) {
             Icon(
@@ -182,40 +179,90 @@ fun ChatTopBar(navigator: Navigator?) {
 fun SecurityMessage() {
     Column(
         modifier = Modifier
-            .padding(start = 45.dp, end = 45.dp, top = 5.dp, bottom = 5.dp)
+            .padding(start = 45.dp, end = 45.dp, top = 10.dp, bottom = 10.dp)
             .clip(RoundedCornerShape(8.dp))
-            .background(color = SecuritymessageBG)
+            .background(color = SecurityMessageBG)
             .padding(start = 7.5.dp, end = 7.5.dp, top = 5.dp, bottom = 5.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        val annotatedString = buildAnnotatedString {
-            appendInlineContent(id = "imageId")
-            append(" Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them. Tap to learn more.")
-        }
-        val inlineContentMap = mapOf(
-            "imageId" to InlineTextContent(
-                Placeholder(10.sp, 10.sp, PlaceholderVerticalAlign.TextCenter)
-            ) {
-                Icon(
-                    modifier = Modifier.size(10.dp),
-                    imageVector = Icons.Default.Lock,
-                    contentDescription = null,
-                    tint = SecuritymessageText
-                )
-            }
-        )
-        Text(
-            annotatedString,
-            inlineContent = inlineContentMap,
-            color = SecuritymessageText,
-            lineHeight = 16.sp,
-            fontSize = 12.sp,
+        TextWithIcon(
+            imageVector = Icons.Outlined.Lock,
+            vectorWidth = 10.sp,
+            vectorHeight = 10.sp,
+            vectorColor = SecurityMessageText,
+            text = " Messages and calls are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them. Tap to learn more.",
+            textColor = SecurityMessageText,
+            textSize = 12.sp,
             textAlign = TextAlign.Center
         )
     }
 }
 
+@Composable
+fun TextWithIcon(
+    imageVector: ImageVector,
+    vectorWidth: TextUnit,
+    vectorHeight: TextUnit,
+    vectorColor: Color,
+    text: String,
+    textColor: Color,
+    textSize: TextUnit,
+    maxLines: Int = Int.MAX_VALUE,
+    textAlign: TextAlign? = null
+) {
+    val annotatedString = buildAnnotatedString {
+        appendInlineContent(id = "imageId")
+        append(text)
+    }
+    val inlineContentMap = mapOf(
+        "imageId" to InlineTextContent(
+            Placeholder(vectorWidth, vectorHeight, PlaceholderVerticalAlign.TextCenter)
+        ) {
+            Icon(
+                modifier = Modifier.size(10.dp),
+                imageVector = imageVector,
+                contentDescription = null,
+                tint = vectorColor
+            )
+        }
+    )
+    Text(
+        annotatedString,
+        inlineContent = inlineContentMap,
+        color = textColor,
+        lineHeight = 16.sp,
+        fontSize = textSize,
+        textAlign = textAlign,
+        maxLines = maxLines
+    )
+}
+
+@Composable
+fun ReceiverBubble() {
+    Column(
+        modifier = Modifier
+            .padding(start = 10.dp, top = 5.dp, end = 10.dp)
+            .clip(RoundedCornerShape(8.dp))
+            .background(color = ReceiverBubbleBG)
+            .padding(start = 10.dp, top = 5.dp, bottom = 5.dp, end = 10.dp)
+    ) {
+        Text(
+            text = "Hello NxtGenCat",
+            color = Color.White
+        )
+        Box(
+            modifier = Modifier.width(150.dp),
+            contentAlignment = Alignment.TopEnd
+        ) {
+            Text(
+                text = "9:45 PM",
+                color = Color.Gray,
+                fontSize = 10.sp,
+            )
+        }
+    }
+}
 
 @Preview(showSystemUi = true)
 @Composable
