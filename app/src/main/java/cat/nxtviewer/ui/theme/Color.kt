@@ -26,3 +26,5 @@ val DotColor = Color(0xFF00C357)
 //FAB
 val FABColor = Color(0xFF00C357)
 val DividerColor = Color(0xFF1B252C)
+val SecuritymessageText = Color(0xFFE7BB6B)
+val SecuritymessageBG = Color(0xFF19272E)

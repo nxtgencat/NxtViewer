@@ -86,22 +86,21 @@ fun HomeScreen() {
                 actions = {
                     IconButton(onClick = { /*TODO*/ }) {
                         Icon(
-                            modifier = Modifier
-                                .size(30.dp),
+                            modifier = Modifier.size(25.dp),
                             painter = painterResource(id = R.drawable.camera),
                             contentDescription = "Chats"
                         )
                     }
                     IconButton(onClick = { /*TODO*/ }) {
                         Icon(
+                            modifier = Modifier.size(25.dp),
                             imageVector = Icons.Default.Search,
                             contentDescription = ""
                         )
                     }
                     IconButton(onClick = { /*TODO*/ }) {
                         Icon(
-                            modifier = Modifier
-                                .size(30.dp),
+                            modifier = Modifier.size(25.dp),
                             painter = painterResource(id = R.drawable.menu),
                             contentDescription = "Chats"
                         )
@@ -267,21 +266,21 @@ fun ChatRow(navigator: Navigator?) {
         modifier = Modifier
             .fillMaxWidth()
             .clickable { navigator?.push(ChatScreenUI()) }
-            .padding(start = 20.dp, end = 20.dp, top = 10.dp, bottom = 10.dp)
+            .padding(start = 15.dp, end = 15.dp, top = 10.dp, bottom = 10.dp)
     ) {
         Icon(
             modifier = Modifier
                 .size(50.dp)
-                .weight(1f),
+                .weight(2f),
             painter = painterResource(id = R.drawable.user),
             contentDescription = "Chats",
             tint = Color.LightGray
         )
-        Spacer(modifier = Modifier.width(10.dp))
+//        Spacer(modifier = Modifier.width(5.dp))
         Column(
             modifier = Modifier
                 .height(50.dp)
-                .weight(6f),
+                .weight(10f),
             verticalArrangement = Arrangement.SpaceAround
         ) {
             Row {
