@@ -34,7 +34,6 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
 import cat.nxtviewer.R
-import cat.nxtviewer.home.HomeScreenUI
 import cat.nxtviewer.ui.theme.WhatsBG
 
 class ChatScreenUI : Screen {
@@ -83,7 +82,7 @@ fun ChatTopBar(navigator: Navigator?) {
     ) {
         IconButton(
             onClick = {
-                navigator?.replaceAll(HomeScreenUI())
+                navigator?.pop()
             }
         ) {
             Icon(

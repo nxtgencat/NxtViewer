@@ -265,7 +265,7 @@ fun ChatRow(navigator: Navigator?) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { navigator?.replaceAll(ChatScreenUI()) }
+            .clickable { navigator?.push(ChatScreenUI()) }
             .padding(start = 20.dp, end = 20.dp, top = 10.dp, bottom = 10.dp)
     ) {
         Icon(
