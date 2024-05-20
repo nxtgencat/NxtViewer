@@ -159,7 +159,7 @@ fun ChatTopBar(navigator: Navigator?) {
                 )
             }
             Row(
-                modifier = Modifier.weight(3f),
+                modifier = Modifier.weight(4f),
                 horizontalArrangement = Arrangement.End
             ) {
                 IconButton(
