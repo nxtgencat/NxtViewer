@@ -127,46 +127,49 @@ fun HomeScreen() {
             }
         },
         bottomBar = {
-            BottomAppBar(
-                containerColor = WhatsBG,
-                contentColor = Color.White,
-            ) {
-                Row(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalAlignment = Alignment.CenterVertically
+            Column {
+                Divider(thickness = 0.2.dp, color = DividerColor)
+                BottomAppBar(
+                    containerColor = WhatsBG,
+                    contentColor = Color.White,
                 ) {
-                    Column(
-                        modifier = Modifier.weight(1f),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
+                    Row(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        BottomBarTab(
-                            R.drawable.chats,
-                            "Chats",
-                            BottomTabSelectedIcon,
-                            BottomTabSelected
-                        )
-                    }
-                    Column(
-                        modifier = Modifier.weight(1f),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        BottomBarTab(R.drawable.updates, "Updates")
-                    }
-                    Column(
-                        modifier = Modifier.weight(1f),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        BottomBarTab(R.drawable.communties, "Communities")
-                    }
-                    Column(
-                        modifier = Modifier.weight(1f),
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-                        BottomBarTab(R.drawable.call, "Calls")
+                        Column(
+                            modifier = Modifier.weight(1f),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            BottomBarTab(
+                                R.drawable.chats,
+                                "Chats",
+                                BottomTabSelectedIcon,
+                                BottomTabSelected
+                            )
+                        }
+                        Column(
+                            modifier = Modifier.weight(1f),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            BottomBarTab(R.drawable.updates, "Updates")
+                        }
+                        Column(
+                            modifier = Modifier.weight(1f),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            BottomBarTab(R.drawable.communties, "Communities")
+                        }
+                        Column(
+                            modifier = Modifier.weight(1f),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            BottomBarTab(R.drawable.call, "Calls")
+                        }
                     }
                 }
             }
