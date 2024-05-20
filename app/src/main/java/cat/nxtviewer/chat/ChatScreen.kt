@@ -138,7 +138,7 @@ fun ChatTopBar(navigator: Navigator?) {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .weight(8f),
+                    .weight(7f),
                 verticalArrangement = Arrangement.SpaceEvenly
             ) {
                 Text(
@@ -158,32 +158,39 @@ fun ChatTopBar(navigator: Navigator?) {
                     maxLines = 1
                 )
             }
-            Row(
-                modifier = Modifier.weight(4f),
-                horizontalArrangement = Arrangement.End
-            ) {
-                IconButton(
-                    onClick = { /*TODO*/ }
+            Box(
+                modifier = Modifier.weight(3f),
+                contentAlignment = Alignment.CenterEnd
+            ){
+                Row(
+                    modifier = Modifier.width(100.dp),
+                    horizontalArrangement = Arrangement.End
                 ) {
-                    Icon(
-                        modifier = Modifier.size(25.dp),
-                        painter = painterResource(id = R.drawable.call),
-                        contentDescription = "Chats",
-                        tint = Color.White
-                    )
-                }
-                Spacer(modifier = Modifier.width(5.dp))
-                IconButton(
-                    onClick = { /*TODO*/ }
-                ) {
-                    Icon(
-                        modifier = Modifier.size(25.dp),
-                        painter = painterResource(id = R.drawable.menu),
-                        contentDescription = "Chats",
-                        tint = Color.White
-                    )
+                    IconButton(
+                    modifier = Modifier.weight(1f),
+                        onClick = { /*TODO*/ }
+                    ) {
+                        Icon(
+                            modifier = Modifier.size(25.dp),
+                            painter = painterResource(id = R.drawable.call),
+                            contentDescription = "Chats",
+                            tint = Color.White
+                        )
+                    }
+                    IconButton(
+                    modifier = Modifier.weight(1f),
+                        onClick = { /*TODO*/ }
+                    ) {
+                        Icon(
+                            modifier = Modifier.size(25.dp),
+                            painter = painterResource(id = R.drawable.menu),
+                            contentDescription = "Chats",
+                            tint = Color.White
+                        )
+                    }
                 }
             }
+
         }
         Spacer(modifier = Modifier.height(5.dp))
         Divider(thickness = 0.2.dp, color = DividerColor)

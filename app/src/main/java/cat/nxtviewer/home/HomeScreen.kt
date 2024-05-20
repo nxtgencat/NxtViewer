@@ -399,7 +399,9 @@ fun BottomBarTabItem(
     Spacer(modifier = Modifier.height(5.dp))
     Text(
         text = name,
-        fontSize = 12.sp
+        fontSize = 12.sp,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis
     )
 }
 
