@@ -73,42 +73,45 @@ fun HomeScreen() {
         modifier = Modifier.fillMaxSize(),
         containerColor = WhatsBG,
         topBar = {
-            TopAppBar(
-                colors = topAppBarColors(
-                    containerColor = WhatsBG,
-                    titleContentColor = Color.White,
-                    actionIconContentColor = Color.White
-                ),
-                title = {
-                    Text(
-                        text = "WhatsApp",
-                        fontWeight = FontWeight.W700
-                    )
-                },
-                actions = {
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(
-                            modifier = Modifier.size(25.dp),
-                            painter = painterResource(id = R.drawable.camera),
-                            contentDescription = "Chats"
+            Column {
+                TopAppBar(
+                    colors = topAppBarColors(
+                        containerColor = WhatsBG,
+                        titleContentColor = Color.White,
+                        actionIconContentColor = Color.White
+                    ),
+                    title = {
+                        Text(
+                            text = "WhatsApp",
+                            fontWeight = FontWeight.W700
                         )
+                    },
+                    actions = {
+                        IconButton(onClick = { /*TODO*/ }) {
+                            Icon(
+                                modifier = Modifier.size(25.dp),
+                                painter = painterResource(id = R.drawable.camera),
+                                contentDescription = "Chats"
+                            )
+                        }
+                        IconButton(onClick = { /*TODO*/ }) {
+                            Icon(
+                                modifier = Modifier.size(25.dp),
+                                imageVector = Icons.Default.Search,
+                                contentDescription = ""
+                            )
+                        }
+                        IconButton(onClick = { /*TODO*/ }) {
+                            Icon(
+                                modifier = Modifier.size(25.dp),
+                                painter = painterResource(id = R.drawable.menu),
+                                contentDescription = "Chats"
+                            )
+                        }
                     }
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(
-                            modifier = Modifier.size(25.dp),
-                            imageVector = Icons.Default.Search,
-                            contentDescription = ""
-                        )
-                    }
-                    IconButton(onClick = { /*TODO*/ }) {
-                        Icon(
-                            modifier = Modifier.size(25.dp),
-                            painter = painterResource(id = R.drawable.menu),
-                            contentDescription = "Chats"
-                        )
-                    }
-                }
-            )
+                )
+                Divider(thickness = 0.2.dp, color = DividerColor)
+            }
         },
         floatingActionButton = {
             FloatingActionButton(
@@ -175,7 +178,6 @@ fun HomeScreen() {
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
         ) {
-            Divider(thickness = 0.2.dp, color = DividerColor)
             Spacer(modifier = Modifier.height(20.dp))
             FilterTabRow()
             Spacer(modifier = Modifier.height(10.dp))

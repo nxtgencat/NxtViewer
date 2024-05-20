@@ -21,6 +21,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.outlined.Lock
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -46,6 +47,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
 import cat.nxtviewer.R
+import cat.nxtviewer.ui.theme.DividerColor
 import cat.nxtviewer.ui.theme.ReceiverBubbleBG
 import cat.nxtviewer.ui.theme.SecurityMessageBG
 import cat.nxtviewer.ui.theme.SecurityMessageText
@@ -91,87 +93,89 @@ fun ChatScreen() {
 
 @Composable
 fun ChatTopBar(navigator: Navigator?) {
-    Row(
+    Column(
         modifier = Modifier
             .statusBarsPadding()
             .fillMaxWidth()
-            .height(75.dp)
-            .padding(start = 5.dp, end = 5.dp, bottom = 5.dp),
-        verticalAlignment = Alignment.CenterVertically,
+            .padding(start = 5.dp, end = 5.dp, top = 5.dp),
     ) {
-        IconButton(
-            modifier = Modifier.weight(2f),
-            onClick = {
-                navigator?.pop()
-            }
-        ) {
-            Icon(
-                modifier = Modifier.size(25.dp),
-                imageVector = Icons.Default.ArrowBack,
-                contentDescription = null,
-                tint = Color.White
-            )
-        }
-        Icon(
-            modifier = Modifier
-                .weight(3f)
-                .size(50.dp),
-            painter = painterResource(id = R.drawable.user),
-            contentDescription = "Chats",
-            tint = Color.LightGray
-        )
-        Spacer(modifier = Modifier.width(5.dp))
-        Column(
-            modifier = Modifier
-                .height(50.dp)
-                .weight(10f),
-            verticalArrangement = Arrangement.SpaceAround
-        ) {
-            Text(
-                maxLines = 1,
-                text = "+919014396580 (You)",
-                fontSize = 16.sp,
-                color = Color.White,
-                overflow = TextOverflow.Ellipsis
-            )
-            Row(
-                verticalAlignment = Alignment.CenterVertically
+        Row {
+            IconButton(
+                modifier = Modifier.weight(2f),
+                onClick = {
+                    navigator?.pop()
+                }
             ) {
-                TextWithIcon(
-                    imageVector = Icons.Default.Lock,
-                    vectorWidth = 10.sp,
-                    vectorHeight = 10.sp,
-                    vectorColor = Color.Gray,
-                    text = " End-to-end encrypted",
-                    textColor = Color.Gray,
-                    textSize = 14.sp,
-                    maxLines = 1
+                Icon(
+                    modifier = Modifier.size(25.dp),
+                    imageVector = Icons.Default.ArrowBack,
+                    contentDescription = null,
+                    tint = Color.White
+                )
+            }
+            Icon(
+                modifier = Modifier
+                    .weight(3f)
+                    .size(50.dp),
+                painter = painterResource(id = R.drawable.user),
+                contentDescription = "Chats",
+                tint = Color.LightGray
+            )
+            Spacer(modifier = Modifier.width(5.dp))
+            Column(
+                modifier = Modifier
+                    .height(50.dp)
+                    .weight(10f),
+                verticalArrangement = Arrangement.SpaceAround
+            ) {
+                Text(
+                    maxLines = 1,
+                    text = "+919014396580 (You)",
+                    fontSize = 16.sp,
+                    color = Color.White,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    TextWithIcon(
+                        imageVector = Icons.Default.Lock,
+                        vectorWidth = 10.sp,
+                        vectorHeight = 10.sp,
+                        vectorColor = Color.Gray,
+                        text = " End-to-end encrypted",
+                        textColor = Color.Gray,
+                        textSize = 14.sp,
+                        maxLines = 1
+                    )
+                }
+            }
+            IconButton(
+                modifier = Modifier.weight(2f),
+                onClick = { /*TODO*/ }
+            ) {
+                Icon(
+                    modifier = Modifier.size(30.dp),
+                    painter = painterResource(id = R.drawable.call),
+                    contentDescription = "Chats",
+                    tint = Color.LightGray
+                )
+            }
+            Spacer(modifier = Modifier.width(5.dp))
+            IconButton(
+                modifier = Modifier.weight(2f),
+                onClick = { /*TODO*/ }
+            ) {
+                Icon(
+                    modifier = Modifier.size(30.dp),
+                    painter = painterResource(id = R.drawable.menu),
+                    contentDescription = "Chats",
+                    tint = Color.LightGray
                 )
             }
         }
-        IconButton(
-            modifier = Modifier.weight(2f),
-            onClick = { /*TODO*/ }
-        ) {
-            Icon(
-                modifier = Modifier.size(30.dp),
-                painter = painterResource(id = R.drawable.call),
-                contentDescription = "Chats",
-                tint = Color.LightGray
-            )
-        }
-        Spacer(modifier = Modifier.width(5.dp))
-        IconButton(
-            modifier = Modifier.weight(2f),
-            onClick = { /*TODO*/ }
-        ) {
-            Icon(
-                modifier = Modifier.size(30.dp),
-                painter = painterResource(id = R.drawable.menu),
-                contentDescription = "Chats",
-                tint = Color.LightGray
-            )
-        }
+        Spacer(modifier = Modifier.height(5.dp))
+        Divider(thickness = 0.2.dp, color = DividerColor)
     }
 }
 
