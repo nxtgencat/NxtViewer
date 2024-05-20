@@ -70,4 +70,8 @@ dependencies {
     val voyagerVersion = "1.0.0"
     // Navigator
     implementation("cafe.adriel.voyager:voyager-navigator:$voyagerVersion")
+
+    implementation("androidx.compose.material:material-icons-extended-android:1.6.7")
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0")
 }

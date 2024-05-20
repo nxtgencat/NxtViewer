@@ -32,3 +32,6 @@ val SecurityMessageBG = Color(0xFF19272E)
 //Bubble
 val ReceiverBubbleBG = Color(0xFF1B2C35)
 val SenderBubbleBG = Color(0xFF004E35)
+
+val ChatRowSelected = Color(0xFF003728)
+val GreyText = Color(0xFF8296A1)
