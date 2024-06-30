@@ -2,6 +2,7 @@ package cat.nxtviewer.chat
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,7 +23,11 @@ import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.outlined.AttachFile
+import androidx.compose.material.icons.outlined.CameraAlt
+import androidx.compose.material.icons.outlined.EmojiEmotions
 import androidx.compose.material.icons.outlined.Lock
+import androidx.compose.material.icons.outlined.Mic
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -50,6 +55,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.Navigator
 import cat.nxtviewer.R
 import cat.nxtviewer.ui.theme.DividerColor
+import cat.nxtviewer.ui.theme.DotColor
 import cat.nxtviewer.ui.theme.GreyText
 import cat.nxtviewer.ui.theme.ReceiverBubbleBG
 import cat.nxtviewer.ui.theme.SecurityMessageBG
@@ -96,7 +102,18 @@ fun ChatScreen() {
                 ) {
                     SecurityMessage()
                 }
-                ReceiverBubble()
+                Column(
+                    modifier = Modifier
+                        .weight(9f)
+                        .fillMaxWidth()
+                ) {
+                    ReceiverBubble()
+
+                }
+                Column {
+                    TextBox()
+
+                }
             }
         }
     }
@@ -138,7 +155,7 @@ fun ChatTopBar(navigator: Navigator?) {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .weight(7f),
+                    .weight(1f),
                 verticalArrangement = Arrangement.SpaceEvenly
             ) {
                 Text(
@@ -159,35 +176,15 @@ fun ChatTopBar(navigator: Navigator?) {
                 )
             }
             Box(
-                modifier = Modifier.weight(3f),
+//                modifier = Modifier.weight(3f),
                 contentAlignment = Alignment.CenterEnd
-            ){
+            ) {
                 Row(
                     modifier = Modifier.width(100.dp),
                     horizontalArrangement = Arrangement.End
                 ) {
-                    IconButton(
-                    modifier = Modifier.weight(1f),
-                        onClick = { /*TODO*/ }
-                    ) {
-                        Icon(
-                            modifier = Modifier.size(25.dp),
-                            painter = painterResource(id = R.drawable.call),
-                            contentDescription = "Chats",
-                            tint = Color.White
-                        )
-                    }
-                    IconButton(
-                    modifier = Modifier.weight(1f),
-                        onClick = { /*TODO*/ }
-                    ) {
-                        Icon(
-                            modifier = Modifier.size(25.dp),
-                            painter = painterResource(id = R.drawable.menu),
-                            contentDescription = "Chats",
-                            tint = Color.White
-                        )
-                    }
+                    TopBarIcon(painterResourceId = R.drawable.call)
+                    TopBarIcon(painterResourceId = R.drawable.menu)
                 }
             }
 
@@ -266,7 +263,7 @@ fun ReceiverBubble() {
             .clip(RoundedCornerShape(8.dp))
             .background(color = ReceiverBubbleBG)
             .padding(start = 10.dp, top = 5.dp, bottom = 5.dp, end = 10.dp)
-            .widthIn(min = 60.dp, max = 300.dp)
+            .widthIn(min = 75.dp, max = 300.dp)
     ) {
         Text(
             text = "Hi",
@@ -283,8 +280,91 @@ fun ReceiverBubble() {
     }
 }
 
+@Composable
+fun TextBox() {
+    Row(
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(5.dp)
+                .clip(RoundedCornerShape(25.dp))
+                .background(ReceiverBubbleBG)
+                .weight(8f),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            TextBoxIcon(imageVector = Icons.Outlined.EmojiEmotions)
+            Text(
+                modifier = Modifier.weight(1f),
+                fontSize = 16.sp,
+                text = "Message",
+                color = Color.LightGray
+            )
+            TextBoxIcon(imageVector = Icons.Outlined.AttachFile)
+            TextBoxIcon(imageVector = Icons.Outlined.CameraAlt)
+
+
+        }
+        Box(
+            modifier = Modifier
+                .padding(top = 5.dp, bottom = 5.dp, end = 5.dp)
+                .size(50.dp)
+                .clip(RoundedCornerShape(50.dp))
+                .background(DotColor)
+                .clickable { },
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                imageVector = Icons.Outlined.Mic,
+                contentDescription = null,
+                tint = Color.Black
+            )
+        }
+    }
+
+}
+
+@Composable
+fun TextBoxIcon(imageVector: ImageVector) {
+    Box(
+        modifier = Modifier
+            .size(50.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        IconButton(onClick = { /*TODO*/ }) {
+            Icon(
+                modifier = Modifier.size(25.dp),
+                imageVector = imageVector,
+                contentDescription = null,
+                tint = Color.LightGray
+            )
+        }
+
+    }
+}
+
+@Composable
+fun TopBarIcon(painterResourceId: Int) {
+    Box(
+        modifier = Modifier
+            .size(50.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        IconButton(onClick = { /*TODO*/ }) {
+            Icon(
+                modifier = Modifier.size(25.dp),
+                painter = painterResource(id = painterResourceId),
+                contentDescription = null,
+                tint = Color.LightGray
+            )
+        }
+
+    }
+}
+
 @Preview(showSystemUi = true)
 @Composable
 fun ChatScreenPreview() {
     ChatScreen()
+
 }
